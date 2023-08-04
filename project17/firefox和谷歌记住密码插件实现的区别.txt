@@ -1,0 +1,16 @@
+插件类型：
+Firefox 插件使用传统的扩展技术，可以访问浏览器底层功能，但需要较多的权限和验证。
+谷歌采用更严格的扩展开发模型，限制了插件对浏览器底层功能的访问，以提高安全性和稳定性。
+
+API 支持：
+Firefox 插件可以使用 XPCOM 接口访问浏览器底层功能，如密码管理器和表单自动填充。
+谷歌的扩展使用 Chrome Extension API 来实现密码管理功能，开发者可以使用这些 API 来访问密码管理和自动填充功能。
+
+功能实现：
+Firefox 的密码管理功能通常是通过 XUL 和 JavaScript 来实现，可以对密码进行保存、查看和删除。
+谷歌的密码管理功能也是通过 JavaScript 和 Extension API 来实现的，具有类似的功能，可以保存密码并自动填充表单。
+
+
+呃呃，可以看看这个（一句话总结：二者不同就是由于浏览器架构和插件开发模型的不同！）
+Firefox Add-ons 开发文档：https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons
+Chrome Extension 开发文档：https://developer.chrome.com/docs/extensions/

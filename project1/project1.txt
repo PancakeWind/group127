@@ -1,0 +1,33 @@
+import hashlib
+import random
+
+def reduced_sm3(input_data):
+    # Implement your reduced SM3 hash function here
+    # This could be a reduced number of rounds or a modified compression function
+    # For academic purposes, you can start with a simple hash function like SHA-256
+    # For example:
+    return hashlib.sha256(input_data.encode()).hexdigest()
+
+def birthday_attack_reduced_sm3():
+    hash_table = {}  # Dictionary to store hash outputs and corresponding inputs
+
+    try:
+        while True:
+            # Generate a random input and compute the hash value
+            input_data = str(random.getrandbits(128))  # Adjust the input size as needed
+            hash_output = reduced_sm3(input_data)
+
+            # Check if the hash output is already present in the hash_table
+            if hash_output in hash_table:
+                # Collision found
+                original_input = hash_table[hash_output]
+                print(f"Collision found!\nInput 1: {original_input}\nInput 2: {input_data}")
+                break
+            else:
+                # Add the hash output and corresponding input to the hash_table
+                hash_table[hash_output] = input_data
+    except KeyboardInterrupt:
+        print("Attack interrupted by user")
+
+if __name__ == "__main__":
+    birthday_attack_reduced_sm3()

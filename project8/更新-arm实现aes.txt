@@ -1,0 +1,75 @@
+ARM实现AES的简化步骤概述
+密钥扩展：将原始加密密钥扩展为每一轮AES算法所需的一组轮密钥。
+初始轮：将初始轮密钥添加到输入数据中。
+主轮：执行固定次数的轮数，每轮包括SubBytes，ShiftRows，MixColumns和AddRoundKey操作。
+最后一轮：执行最后一轮，但不包括MixColumns操作。
+
+接下来是具体代码：
+.text
+.align 2
+
+// SubBytes操作：对输入数据进行字节代换
+SubBytes:
+    // TODO: 在这里实现SubBytes操作
+    // 输入： r0 = 输入数据
+    // 输出： r0 = SubBytes后的数据
+    bx lr
+
+// ShiftRows操作：对输入数据进行行移位
+ShiftRows:
+    // TODO: 在这里实现ShiftRows操作
+    // 输入： r0 = 输入数据
+    // 输出： r0 = ShiftRows后的数据
+    bx lr
+
+// MixColumns操作：对输入数据进行列混淆
+MixColumns:
+    // TODO: 在这里实现MixColumns操作
+    // 输入： r0 = 输入数据
+    // 输出： r0 = MixColumns后的数据
+    bx lr
+
+// AddRoundKey操作：将输入数据与轮密钥进行异或
+AddRoundKey:
+    // TODO: 在这里实现AddRoundKey操作
+    // 输入： r0 = 输入数据， r1 = 轮密钥
+    // 输出： r0 = AddRoundKey后的数据
+    bx lr
+
+// AES加密主函数
+AES_Encrypt:
+    // TODO: 在这里实现AES加密算法
+    // 输入： r0 = 输入数据指针， r1 = 密钥指针
+    // 输出： r0 = 加密后的数据
+    push {r4-r11, lr}   // 保存寄存器
+    // 密钥扩展
+    // TODO: 在这里实现密钥扩展
+    // r1 = 扩展后的轮密钥
+    // 初始化轮密钥
+    // TODO: 在这里实现初始化轮密钥
+    // r1 = 第一轮密钥
+
+    // 执行初始轮
+    // TODO: 在这里实现初始轮操作
+    // r0 = AddRoundKey(输入数据， 第一轮密钥)
+
+    // 执行主轮
+    mov r2, #9   // 总共执行9轮（对于AES-128）
+MainLoop:
+    // TODO: 在这里实现主轮操作
+    // r0 = SubBytes(r0)
+    // r0 = ShiftRows(r0)
+    // r0 = MixColumns(r0)
+    // r0 = AddRoundKey(r0, 轮密钥)
+
+    subs r2, r2, #1
+    bne MainLoop
+
+    // 执行最后一轮（不包括MixColumns）
+    // TODO: 在这里实现最后一轮操作
+    // r0 = SubBytes(r0)
+    // r0 = ShiftRows(r0)
+    // r0 = AddRoundKey(r0, 最后一轮密钥)
+
+    pop {r4-r11, lr}    // 恢复寄存器
+    bx lr
